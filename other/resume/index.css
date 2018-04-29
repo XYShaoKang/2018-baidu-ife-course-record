@@ -1,18 +1,49 @@
-body{
-    background: rgb(219, 219, 219);
-    color: rgb(114, 114, 114);
-    font-family: Arial, Helvetica, sans-serif;
+body {
+  background: rgb(219, 219, 219);
+  color: rgb(114, 114, 114);
+  font-family: Arial, Helvetica, sans-serif;
 }
 h1,
-h2{
-    color: #000;
+h2 {
+  color: #000;
 }
-h1{
-    text-shadow: 5px 9px 5px rgba(110, 110, 110);
-    text-align: left;
+h1 {
+  text-shadow: 5px 9px 5px rgba(110, 110, 110);
+  text-align: left;
 }
-header p{
-    font-style: italic;
-    font-weight: bold;
-    font-size: 16px;
+header p {
+  font-style: italic;
+  font-weight: bold;
+  font-size: 16px;
+  background: rgb(170, 170, 170);
+}
+section {
+  border: 1px solid rgb(170, 170, 170);
+}
+.experiences ul {
+  list-style-type: circle;
+}
+.skills ul {
+  list-style-type: square;
+}
+.educations ol {
+  list-style-type: lower-alpha;
+}
+.practices ol {
+  list-style-type: lower-roman;
+}
+
+a:link {
+  color: rgb(49, 49, 49);
+  background-color: rgb(212, 212, 212);
+
+  
+}
+a:visited {
+  color: rgb(189, 189, 189);
+  background-color: rgb(109, 109, 109);
+}
+a:hover {
+  color: rgb(141, 141, 141);
+  background-color: rgb(212, 212, 212);
 }
