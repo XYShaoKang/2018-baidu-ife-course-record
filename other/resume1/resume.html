@@ -6,10 +6,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>resume</title>
+    <link rel="stylesheet" href="css/common.css">
     <link rel="stylesheet" href="css/style_1.css">
 </head>
 
 <body>
+    <nav>
+        <ul>
+            <li onclick="document.getElementsByTagName('link')[1].href='css/style_1.css'">
+                
+                <input type="radio" name="style" id="style_1" checked>
+                <label for="style_1">主题1</label>
+            </li>
+            <li onclick="document.getElementsByTagName('link')[1].href='css/style_2.css'">
+                <input type="radio" name="style" id="style_2">
+                <label for="style_2">主题2</label>
+            </li>
+            <li onclick="document.getElementsByTagName('link')[1].href='css/style_3.css'">
+                <input type="radio" name="style" id="style_3">
+                <label for="style_3">主题3</label>
+            </li>
+        </ul>
+    </nav>
     <div class="container">
         <header>
             <h1>简历</h1>

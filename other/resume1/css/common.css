@@ -1,0 +1,55 @@
+nav{
+    width: 550px;
+    border: 2px solid rgb(180, 180, 180);
+    margin-bottom: 10px;
+}
+nav li{
+    list-style: none;
+    float: left;
+    
+}
+
+nav input{
+    display: none;
+}
+nav label{
+    display: block;
+    margin: 0 5px 10px 5px;
+    border-radius: 5px;
+    background: #fff ;
+    color: #4395ff;
+
+    width: 106px;
+    height: 32px;
+    border: 0;
+    padding: 0;
+    line-height: 32px;
+    text-align: center;
+    font-weight: 500;
+}
+nav label:hover{
+    cursor: pointer;
+    background: #b3cef3;
+}
+nav input:checked+label{
+    background: #4395ff;
+    color: #fff;
+}
+nav input:checked+label{
+    cursor: default;
+}
+ul::before{
+    content: '切换主题';
+    /* display: block; */
+    float: left;
+    vertical-align: 0px;
+    height: 32px;
+    line-height: 32px;
+    margin-right: 10px;
+}
+
+nav::after{
+    content: '';
+    display: block;
+    clear: both;
+}
