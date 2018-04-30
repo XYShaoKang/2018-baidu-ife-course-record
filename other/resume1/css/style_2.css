@@ -1,0 +1,50 @@
+.container {
+  width: 1000px;
+  background: #62a5fa;
+}
+.container::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+header {
+  width: 20%;
+  height: 100px;
+  float: left;
+  text-align: center;
+  line-height: 100px;
+  color: #fff;
+}
+.content {
+  box-sizing: border-box;
+  float: left;
+  width: 80%;
+  background: #fff;
+  padding-left: 20px;
+}
+dt {
+  margin: 0;
+  padding: 0;
+}
+dd {
+  margin: 0 0 10px;
+  padding: 0;
+}
+.information dt,
+.information dd,
+.contact dt,
+.contact dd {
+  float: left;
+}
+.information dd,
+.contact dd {
+  margin-right: 25px;
+  margin-left: 10px;
+}
+.information::after,
+.contact::after {
+  display: block;
+  clear: both;
+
+  content: "";
+}

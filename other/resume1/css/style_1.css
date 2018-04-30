@@ -1,0 +1,26 @@
+dt {
+    margin: 0;
+    padding: 0;
+}
+dd {
+    margin: 0 0 10px;
+    padding: 0;
+}
+.information dt,
+.information dd,
+.contact dt,
+.contact dd {
+    float: left;
+}
+.information dd,
+.contact dd {
+    margin-right: 25px;
+    margin-left: 10px;
+}
+.information::after,
+.contact::after {
+    display: block;
+    clear: both;
+
+    content: "";
+}

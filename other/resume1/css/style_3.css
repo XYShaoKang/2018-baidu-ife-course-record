@@ -1,0 +1,49 @@
+h1,
+h2,
+dl,
+dd,
+dt {
+    margin: 0;
+    padding: 0;
+}
+header {
+    height: 70px;
+
+    background: #858585;
+
+    line-height: 70px;
+}
+.content section {
+    border: 1px solid #efefef;
+}
+.content section::after {
+    display: block;
+    clear: both;
+
+    content: "";
+}
+.content h2,
+.content dl {
+    float: left;
+    height: 100px;
+}
+.content h2 {
+    background: #d6d6d6;
+    line-height: 100px;
+    width: 10%;
+    text-align: center;
+}
+.content dl{
+    box-sizing:border-box;
+    width: 90%;
+    padding: 12px;
+}
+dl>dt{
+    float: left;
+}
+.information dd,
+.contact dd {
+    float: left;
+    margin-right: 25px;
+    margin-left: 10px;
+}
