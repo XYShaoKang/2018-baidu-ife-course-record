@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>布局练习</title>
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="two-colum-one-float">
+
+    <div class="left"></div>
+
+    <div class="right"></div>
+    <div class="center"></div>
+    <nav>
+        <table border="1" cellspacing="0" cellpadding="0">
+            <tr>
+                <th>实现效果</th>
+                <th>Float</th>
+                <th>Position</th>
+                <th>Flexbox</th>
+            </tr>
+            <tr>
+                <td>两栏左30右70</td>
+                <td>
+                    <input type="radio" name="tab-class" onclick="document.getElementsByTagName('body')[0].className='two-colum-one-float'" checked>
+                </td>
+                <td>
+                    <input type="radio" name="tab-class" onclick="document.getElementsByTagName('body')[0].className='two-colum-one-position'">
+                </td>
+                <td>
+                    <input type="radio" name="tab-class" onclick="document.getElementsByTagName('body')[0].className='two-colum-one-flexbox'">
+                </td>
+            </tr>
+            <tr>
+                <td>两栏左固定</td>
+                <td>
+                    <input type="radio" name="tab-class" onclick="document.getElementsByTagName('body')[0].className='two-colum-two-float'">
+                </td>
+                <td>
+                    <input type="radio" name="tab-class" onclick="document.getElementsByTagName('body')[0].className='two-colum-two-position'">
+                </td>
+                <td>
+                    <input type="radio" name="tab-class" onclick="document.getElementsByTagName('body')[0].className='two-colum-two-flexbox'">
+                </td>
+            </tr>
+            <tr>
+                <td>两栏右固定</td>
+                <td>
+                    <input type="radio" name="tab-class" onclick="document.getElementsByTagName('body')[0].className='two-colum-three-float'">
+                </td>
+                <td>
+                    <input type="radio" name="tab-class" onclick="document.getElementsByTagName('body')[0].className='two-colum-three-position'">
+                </td>
+                <td>
+                    <input type="radio" name="tab-class" onclick="document.getElementsByTagName('body')[0].className='two-colum-three-flexbox'">
+                </td>
+            </tr>
+            <tr>
+                <td>三栏左右固定</td>
+                <td>
+                    <input type="radio" name="tab-class" onclick="document.getElementsByTagName('body')[0].className='three-colum-one-float'">
+                </td>
+                <td>
+                    <input type="radio" name="tab-class" onclick="document.getElementsByTagName('body')[0].className='three-colum-one-position'">
+                </td>
+                <td>
+                    <input type="radio" name="tab-class" onclick="document.getElementsByTagName('body')[0].className='three-colum-one-flexbox'">
+                </td>
+            </tr>
+            <tr>
+                <td>三栏左中固定</td>
+                <td>
+                    <input type="radio" name="tab-class" onclick="document.getElementsByTagName('body')[0].className='three-colum-two-float'">
+                </td>
+                <td>
+                    <input type="radio" name="tab-class" onclick="document.getElementsByTagName('body')[0].className='three-colum-two-position'">
+                </td>
+                <td>
+                    <input type="radio" name="tab-class" onclick="document.getElementsByTagName('body')[0].className='three-colum-two-flexbox'">
+                </td>
+            </tr>
+        </table>
+    </nav>
+</body>
+
+</html>
