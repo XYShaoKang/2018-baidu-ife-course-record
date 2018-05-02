@@ -102,6 +102,9 @@ header form input[type="submit"] {
 
     font-weight: bold;
 }
+header form input[type="submit"]:hover{
+    cursor: pointer;
+}
 
 .feature-9 {
     display: flex;
@@ -244,6 +247,9 @@ header form input[type="submit"] {
     background: #fff;
 
     font-size: 12px;
+}
+.call-to-action .left button:hover{
+    cursor: pointer;
 }
 .call-to-action .left button:nth-child(2) {
     color: #fff;
@@ -482,12 +488,15 @@ header form input[type="submit"] {
     height: 145px;
     margin: 20px 0 0 0;
     padding-left: 20px;
-
+    padding-top: 15px;
     font-size: 14px;
 }
 .contact form input[type="submit"] {
     color: #fff;
     background: #000;
+}
+.contact form input[type="submit"]:hover{
+    cursor: pointer;
 }
 .contact form input[name="email"] {
     margin-top: 60px;
@@ -576,4 +585,8 @@ footer > div > p {
     margin-bottom: 25px;
 
     color: rgba(255, 255, 255, .302);
+}
+footer a{
+    color: rgba(255, 255, 255, .302);
+    text-decoration-line: none;
 }
