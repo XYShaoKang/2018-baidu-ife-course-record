@@ -36,9 +36,9 @@ header > .title > h1 {
 }
 header > .title > p {
     margin-top: 50px;
-
+    max-height: 150px;
     color: rgba(255, 255, 255, .702);
-
+    overflow: hidden;
     font-size: 22px;
 }
 /* 顶部登录框 */
@@ -184,6 +184,8 @@ header form input[type="submit"]:hover{
 }
 .feature-9 .item p {
     font-size: 16px;
+    overflow: hidden;
+    max-height: 80px;
 }
 
 .call-to-action {
@@ -230,6 +232,8 @@ header form input[type="submit"]:hover{
 
     font-size: 18px;
     font-weight: 300;
+    overflow: hidden;
+    max-height: 210px;
 }
 .call-to-action .left div {
     margin-top: 50px;
@@ -308,8 +312,9 @@ header form input[type="submit"]:hover{
 .feature-19 > div > div {
     margin-right: 40px;
     margin-left: 40px;
-
+    max-height: 400px;
     text-align: center;
+    overflow: hidden;
 }
 .feature-19 p {
     width: 247px;
@@ -356,6 +361,9 @@ header form input[type="submit"]:hover{
     color: rgba(20, 20, 20, .702);
 
     font-size: 16px;
+    overflow: hidden;
+    max-height: 200px;
+
 }
 
 .team {
@@ -519,6 +527,8 @@ header form input[type="submit"]:hover{
     color: rgba(20, 20, 20, .702);
 
     font-size: 16px;
+    overflow: hidden;
+    max-height: 150px;
 }
 .contact > div span {
     width: 223px;
