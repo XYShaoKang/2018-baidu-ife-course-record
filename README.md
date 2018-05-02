@@ -10,6 +10,7 @@
 * [简历](./ife-course/web-basic/resume-20180429.md)
 * [三种简历](./ife-course/web-basic/three-resume-20180430.md)
 * [学习布局](./ife-course/web-basic/study-layout-20180501.md)
+* [漂亮的网站](./ife-course/web-basic/make-website.md)
 
 ## 其他记录
 
@@ -17,3 +18,4 @@
 * [简历](./other/resume/index.html)
 * [三种简历](./other/resume1/resume.html)
 * [学习布局作业](./other/layout/index.html)
+* [漂亮的网站](./other/make-website/index.html)
