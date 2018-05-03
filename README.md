@@ -12,6 +12,10 @@
 * [学习布局](./ife-course/web-basic/study-layout-20180501.md)
 * [漂亮的网站](./ife-course/web-basic/make-website.md)
 
+### 设计学院
+
+-->[详细记录](./ife-course/designer-college/README.md)
+
 ## 其他记录
 
 * [git 使用](./other/git.md)
