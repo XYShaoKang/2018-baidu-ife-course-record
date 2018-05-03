@@ -6,4 +6,4 @@
 
 ### 今天做一个简单的动画效果。
 
-[Demo](./NO01/index.html)
+[Demo](code/NO01/index.html)
