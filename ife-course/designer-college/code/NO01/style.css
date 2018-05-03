@@ -1,0 +1,59 @@
+.main {
+    display: flex;
+    align-items: center;
+    flex-direction: column-reverse;
+    justify-content: space-around;
+
+    width: 500px;
+    height: 200px;
+    margin: 0 auto;
+}
+
+
+
+.main input {
+    display: none;
+}
+.main label {
+    width: 100px;
+    height: 30px;
+
+    text-align: center;
+
+    border: 1px solid #000;
+    border-radius: 5px;
+    background: #fff;
+
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 25px;
+    user-select:none;
+}
+.main label:active{
+    background: #49f;
+}
+.main h1 {
+    transition: color 0.2s;
+    transition-timing-function:ease-in-out;
+    font-weight: 400;
+}
+.main h1::after {
+    display: block;
+
+    width: 0;
+    height: 4px;
+    margin: 0 auto;
+
+    content: "";
+    transition: width 0.5s;
+    transition-timing-function:ease-in-out;
+
+    background: #49f;
+}
+
+input:checked ~ h1::after {
+    width: 100%;
+}
+input:checked ~ h1 {
+    color: #49f;
+}
