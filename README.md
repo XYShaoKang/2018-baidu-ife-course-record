@@ -14,7 +14,7 @@
 
 ### 设计学院
 
--->[详细记录](./ife-course/designer-college/README.md)
+-->[详细记录](./ife-course/designer-college/)
 
 ## 其他记录
 
