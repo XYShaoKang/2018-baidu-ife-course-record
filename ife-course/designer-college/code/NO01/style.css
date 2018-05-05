@@ -50,6 +50,7 @@
     background: #49f;
 }
 
+
 input:checked ~ h1::after {
     width: 100%;
 }
