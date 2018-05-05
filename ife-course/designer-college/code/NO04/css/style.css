@@ -1,0 +1,36 @@
+/* 整体水平居中 */
+.wrap {
+    position: absolute;
+    right: 0;
+    left: 0;
+
+    width: 250px;
+    height: 354px;
+    margin: 0 auto;
+}
+/* 图片重叠定位 */
+.wrap div {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+/* 过度定义 */
+.start {
+    transition: transform 1s ease-in-out;
+    transform: rotatey(0deg);
+
+    backface-visibility: hidden;
+}
+.end {
+    transition: transform 1s ease-in-out;
+    transform: rotatey(180deg);
+
+    backface-visibility: hidden;
+}
+/* 过度效果 */
+.wrap:hover .start {
+    transform: rotatey(180deg);
+}
+.wrap:hover .end {
+    transform: rotatey(0deg);
+}
