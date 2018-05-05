@@ -7,23 +7,28 @@
     width: 250px;
     height: 354px;
     margin: 0 auto;
+    perspective: 600px;
+    transform-style: preserve-3d;
 }
 /* 图片重叠定位 */
 .wrap div {
     position: absolute;
     top: 0;
     left: 0;
+    
 }
 /* 过度定义 */
 .start {
-    transition: transform 1s ease-in-out;
+    transition: all 1s cubic-bezier(0.61,-0.22, 0.42, 1.19);
     transform: rotatey(0deg);
 
     backface-visibility: hidden;
+    
+    
 }
 .end {
-    transition: transform 1s ease-in-out;
-    transform: rotatey(180deg);
+    transition: all 1s cubic-bezier(0.61,-0.22, 0.42, 1.19);
+    transform: rotatey(-180deg);
 
     backface-visibility: hidden;
 }
