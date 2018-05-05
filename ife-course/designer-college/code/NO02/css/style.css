@@ -21,7 +21,6 @@
 }
 .translate {
   transform: translate(10px, 20px);
-  transition: transform 500ms ease-in-out;
 }
 .all {
   transform: matrix( 0.99459459459459,1.39126606246386,-0.1375006599277,1.08117109748434,10,60);
