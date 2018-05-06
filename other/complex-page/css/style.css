@@ -562,6 +562,22 @@ header .secondary {
     font-size: 18px;
     line-height: 1.2;
 }
+.online h3 {
+    display: flex;
+    align-items: center;
+}
+.online h3::after {
+    display: block;
+
+    width: 8px;
+    height: 8px;
+    margin-left: 10px;
+
+    content: "";
+
+    border-radius: 50%;
+    background-color: rgb(27, 185, 52);
+}
 .chat-title .action {
     display: flex;
 }
