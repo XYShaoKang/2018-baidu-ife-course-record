@@ -11,6 +11,7 @@
 * [三种简历](./ife-course/web-basic/three-resume-20180430.md)
 * [学习布局](./ife-course/web-basic/study-layout-20180501.md)
 * [漂亮的网站](./ife-course/web-basic/make-website.md)
+* [复杂页面实现](./ife-course/web-basic/complex-page.md)
 
 ### 设计学院
 
