@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>IFE ECMAScript</title>
+    <style>
+        table,
+        td,
+        th {
+            border: 1px solid green;
+            border-collapse: collapse;
+        }
+
+        .bd {
+            border: 2px solid rgb(132, 36, 211);
+            margin: 10px;
+            padding: 10px;
+            width: 500px;
+            margin: 10px auto;
+        }
+
+        .title {
+            border-bottom: 1px solid rgb(122, 122, 122);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bd">
+        <h2 class="title">加减乘除</h2>
+        <input id="first-number" type="number" value="0" placeholder="第一个数字">
+        <input id="second-number" type="number" value="0" placeholder="第二个数字">
+        <button id="add-btn">加</button>
+        <button id="minus-btn">减</button>
+        <button id="times-btn">乘</button>
+        <button id="divide-btn">除</button>
+        <p id="result">运算结果</p>
+    </div>
+    <div class="bd">
+        <h2 class="title">二进制转换</h2>
+        <input id="dec-number" type="number" placeholder="输入一个十进制非负整数">
+        <input id="bin-bit" type="number" placeholder="输入转化后二进制数字位数">
+        <button id="trans-btn">转化为二进制</button>
+        <p id="result1">运算结果</p>
+    </div>
+    <div class="bd">
+        <h2 class="title">九九乘法表</h2>
+        <table id="nnmt">
+            <tr>
+                <td>1*1=1</td>
+            </tr>
+        </table>
+    </div>
+
+    <script>
+        var buttons = document.getElementsByTagName("button");
+        var result = document.getElementById("result");
+        buttons[0].onclick = function () { result.innerText = '运算结果:' + operation('+'); }
+        buttons[1].onclick = function () { result.innerText = '运算结果:' + operation('-'); }
+        buttons[2].onclick = function () { result.innerText = '运算结果:' + operation('*'); }
+        buttons[3].onclick = function () { result.innerText = '运算结果:' + operation('/'); }
+        function operation(operator) {
+            var firstNum = Number(document.getElementById("first-number").value);
+            var secondNum = Number(document.getElementById("second-number").value);
+            switch (operator) {
+                case '+':
+                    return firstNum + secondNum;
+                    break;
+                case '-':
+                    return firstNum - secondNum;
+                    break;
+                case '*':
+                    return firstNum * secondNum;
+                    break;
+                case '/':
+                    if (secondNum == 0) {
+                        return '除数不能为0';
+                    } else {
+                        return firstNum / secondNum;
+                    }
+                    break;
+
+                default:
+                    return '未知错误';
+                    break;
+            }
+        }
+
+        // 二进制转换
+        function dec2bin(decNumber) {
+            // 在这里实现你的转化方法，注意需要判断输入必须为一个非负整数
+            if (decNumber < 0) {
+                return '请输入正数'
+            }
+            if (decNumber < 2) {
+                return decNumber;
+            } else {
+                var mod = decNumber % 2;
+                return dec2bin((decNumber - mod) / 2) + (mod).toString();
+            }
+        }
+        var result1 = document.getElementById("result1");
+        // 实现党点击转化按钮时，将输入的十进制数字转化为二进制，并显示在result的p标签内
+        // Some coding
+        document.getElementById('trans-btn').onclick = function () {
+            var num = Number(document.getElementById("dec-number").value);
+            var binary = dec2bin(num);
+            var binBit = Number(document.getElementById("bin-bit").value);
+            var resultStr = binary;
+            if (document.getElementById("bin-bit").value != '') {
+                if (binary.length > binBit) {
+                    console.log('位数小于计算结果');
+
+                } else {
+                    resultStr = new Array(binBit - binary.length + 1).join('0') + resultStr;
+                }
+            }
+
+
+            result1.innerText = '运算结果:' + resultStr;
+        }
+
+
+
+        //从1到100，以此在console输出各数字，但是，当数字为3的倍数或者含有3的时候，输出“PA”
+        console.log('从1到100，以此在console输出各数字，但是，当数字为3的倍数或者含有3的时候，输出“PA”');
+        for (let index = 1; index < 101; index++) {
+            if (index % 3 == 0 || index.toString().indexOf('3') > 0) {
+                console.log('PA');
+
+            } else {
+                console.log(index);
+
+            }
+
+        }
+
+
+        //第一步，最低要求：在Console中按行输出 n * m = t
+        for (let i = 1; i < 10; i++) {
+            var row = '';
+            for (let j = 1; j < 10; j++) {
+                row += '\t' + i + '*' + j + '=' + i * j;
+                if (j >= i) {
+                    break;
+                }
+            }
+            console.log(row);
+        }
+        //然后，尝试在网页中，使用table来实现一个九九乘法表<tr><td>1*1=1</td></tr>
+        var table = '';
+        for (let i = 1; i < 10; i++) {
+            var row = '<tr>';
+            for (let j = 1; j < 10; j++) {
+                // row += i + '*' + j + '=' + i * j;
+                if (j > i) {
+                    row += '<td></td>';
+                } else {
+                    row += '<td>' + i + '*' + j + '=' + i * j + '</td>';
+                }
+            }
+            row += '</tr>';
+            table += row;
+        }
+        document.getElementById("nnmt").innerHTML = table;
+
+    </script>
+</body>
+
+</html>
