@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>No.7 - 使用 animate.css 实现一个优雅的登录框</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animate.css">
+</head>
+
+<body>
+    <div class="login">
+        <h2>Login</h2>
+        <div>
+            <input type="email" name="email" id="email">
+            <label for="email">Email</label>
+        </div>
+
+        <div>
+            <input type="password" name="password" id="password">
+            <label for="password">Password</label>
+        </div>
+
+
+        <input type="submit" value="Submit">
+    </div>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        // 输入框聚焦时提示文本上浮
+        $('.login input').focus(function () {
+            var tm = $(this).outerHeight() / 2 * -1 + 'px';
+            console.log(tm);
+            $(this).next().addClass('up');
+        })
+        // 输入框是去焦点时判断文本框是否有值
+        // 如果没有值提示文本恢复，如果两个都有值，添加按钮动画
+        $('.login input').blur(function () {
+            
+            if ($(this).val() == '') {
+                $(this).next().removeClass('up');
+            }
+            if ($('.login input#email').val() != '' && $('.login input#password').val() != '') {
+                $('.login input[type="submit"]').addClass('animated infinite pulse');
+            }else{
+                $('.login input[type="submit"]').removeClass('animated infinite pulse');
+            }
+        })
+    </script>
+</body>
+
+</html>

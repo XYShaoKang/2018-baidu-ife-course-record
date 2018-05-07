@@ -1,0 +1,67 @@
+.login {
+    position: absolute;
+    right: 0;
+    left: 0;
+
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: space-around;
+
+    box-sizing: border-box;
+    width: 300px;
+    height: 300px;
+    margin: 0 auto;
+    padding: 30px;
+
+    box-shadow: 0 3px 50px  #000;
+}
+
+.login input {
+    width: 100%;
+
+    border-style: none;
+}
+.login input[type="email"],
+.login input[type="password"] {
+    padding-bottom: 5px;
+
+    border-bottom: 1px solid #777;
+}
+.login div {
+    position: relative;
+
+    margin-bottom: 30px;
+}
+.login label {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    cursor: text;
+
+    color: #666;
+}
+
+.login input[type="email"]:focus,
+.login input[type="password"]:focus {
+    border-bottom: 1px solid #49f;
+    outline: none;
+}
+
+.login input[type="submit"] {
+    height: 35px;
+
+    color: #fff;
+    border-radius: 3px;
+    background: #49f;
+
+    font-size: 17px;
+    font-weight: 500;
+}
+/* 提示文本上浮动画 */
+.login .up {
+    top: -18px;
+
+    transition: top .2s ease-in-out;
+}

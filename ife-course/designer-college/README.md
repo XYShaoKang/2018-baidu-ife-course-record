@@ -37,3 +37,7 @@ youtube 上一个讲 css 动画的视频，那哥们讲的太欢乐了，如果�
 ## No.6 - 利用 CSS animation 制作一个炫酷的 Slider
 
 [Demo](code/NO06/index.html)
+
+## No.7 - 使用 animate.css 实现一个优雅的登录框
+
+[Demo](code/NO07/index.html)
