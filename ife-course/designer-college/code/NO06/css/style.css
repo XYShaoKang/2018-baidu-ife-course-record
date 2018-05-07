@@ -1,0 +1,184 @@
+html,
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+
+    background: #000;
+}
+input {
+    display: none;
+}
+
+.box {
+    position: relative;
+
+    overflow: hidden;
+
+    width: 100%;
+    height: 100%;
+}
+/* 大图定义 */
+.big-img div:nth-child(1) {
+    background-image: url(../image/001.jpg);
+}
+.big-img div:nth-child(2) {
+    background-image: url(../image/002.jpg);
+}
+.big-img div:nth-child(3) {
+    background-image: url(../image/003.jpg);
+}
+.big-img div:nth-child(4) {
+    background-image: url(../image/004.jpg);
+}
+.big-img div:nth-child(5) {
+    background-image: url(../image/005.png);
+}
+
+.big-img div {
+    position: absolute;
+    z-index: 0;
+
+    display: flex;
+    align-items: center;
+
+    width: 100%;
+    height: 100%;
+
+    opacity: 0;
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+/* 小图导航定义 */
+.small-img {
+    position: absolute;
+    z-index: 100;
+    right: 0;
+    bottom: 5%;
+    left: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 90%;
+    margin: 0 auto;
+}
+.small-img label {
+    position: relative;
+
+    margin: 20px;
+
+    opacity: .2;
+
+    line-height: 0;
+}
+
+.small-img img {
+    width: 100%;
+
+    box-shadow: 0 0 10px 2px #470058;
+}
+
+.small-img label:hover {
+    opacity: 1;
+    box-shadow: 0 0 20px 5px #c0f;
+}
+
+/* 图片切换动画 */
+#img1:checked ~ .big-img > div:nth-child(1) {
+    z-index: 5;
+
+    animation: first .5s ease-out forwards;
+
+    opacity: 1;
+}
+#img2:checked ~ .big-img > div:nth-child(2) {
+    z-index: 5;
+
+    animation: second .5s ease-out  forwards;
+
+    opacity: 1;
+}
+#img3:checked ~ .big-img > div:nth-child(3) {
+    z-index: 5;
+
+    animation: third 1s ease-in  forwards;
+
+    opacity: 1;
+}
+#img4:checked ~ .big-img > div:nth-child(4) {
+    z-index: 5;
+
+    animation: fourth 1s ease-out  forwards;
+
+    opacity: 1;
+}
+#img5:checked ~ .big-img > div:nth-child(5) {
+    z-index: 5;
+
+    animation: fifth .7s ease-in-out forwards  ;
+
+    opacity: 1;
+}
+
+.big-img > div {
+    animation: out 1s ;
+}
+
+
+/* 动画定义 */
+@keyframes out {
+    0% {
+        transform: scale(1);
+
+        opacity: 1;
+    }
+    100% {
+        transform: scale(10);
+
+        opacity: .1;
+    }
+}
+@keyframes first {
+    0% {
+        left: -500px;
+    }
+    100% {
+        left: 0;
+    }
+}
+@keyframes second {
+    0% {
+        top: 250px;
+    }
+    100% {
+        top: 0;
+    }
+}
+@keyframes third {
+    0% {
+        transform: scale(.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+@keyframes fourth {
+    0% {
+        transform: scale(2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+@keyframes fifth {
+    0% {
+        transform: rotateZ(360deg) scale(.1);
+    }
+    100% {
+        transform: rotateZ(0deg) scale(1);
+    }
+}
