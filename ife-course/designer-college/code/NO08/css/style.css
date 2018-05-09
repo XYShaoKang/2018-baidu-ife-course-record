@@ -1,0 +1,156 @@
+html,
+body,
+ul,
+li {
+    margin: 0;
+    padding: 0;
+}
+ul,
+li {
+    list-style: none;
+}
+
+header {
+    width: 100%;
+    max-height: 590px;
+
+    background-color: #102131;
+}
+.nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    max-width: 1130px;
+    height: 110px;
+    margin: 0 auto;
+}
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 100%;
+}
+nav > ul {
+    display: flex;
+}
+nav > ul > li {
+    margin-right: 40px;
+}
+nav > ul > li > a {
+    color: #fff;
+
+    font-size: 14px;
+    font-weight: 300;
+
+    text-decoration-line: none;
+}
+nav > span  {
+    display: block;
+
+    padding: 11px 30px;
+
+    
+    border-radius: 40px;
+    background-image: linear-gradient(-180deg, #6873e8 0%, #277df4 100%);
+}
+nav >span > a{
+    color: #fff;
+    text-decoration-line: none;
+}
+.nav > h1 {
+    position: absolute;
+
+    margin: 0 auto;
+
+    color: #fff;
+
+    font-size: 12px;
+}
+
+
+.bar{
+    color: #fff;
+    display: flex;
+    max-width: 1130px;
+    margin: 0 auto;
+}
+.bar>div{
+    width: 54%;
+}
+.bar>div> h2{
+    font-size: 44px;
+    line-height: 62px;
+    color: #fff;
+    font-weight: 800;
+    margin: 0;
+    margin-bottom: 30px;
+}
+.bar >div> p{
+    color: rgba(255, 255, 255, .7);
+    font-size: 15px;
+    padding-right: 47px;
+    padding-left: 5px;
+    font-weight: 200;
+    line-height: 30px;
+    letter-spacing: 2px;
+}
+
+
+
+
+.san-hover{
+    display: flex;
+    padding:  20px;
+    justify-content: center;
+    max-width: 1200px;
+    position: absolute;
+
+    right: 0;
+    left: 0;
+    margin: auto;
+}
+.san-hover>div{
+    width: 20%;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1), 0 5px 15px rgba(0, 0, 0, 0.05);
+    border-right: 4px;
+    margin-left: 20px;
+    margin-right: 20px;
+    min-width:  150px;
+}
+.san-hover>div>div:first-child{
+    height: 200px;
+}
+.san-hover>div>div:last-child{
+    padding-right: 20px;
+    padding-left: 20px;
+}
+.san-hover h2{
+    padding-top: 20px;
+    font-size: 24px;
+    color: #344a5e;
+    font-weight: 400;
+    margin-top: 10.5px;
+    margin-bottom: 10.5px;
+}
+.san-hover p{
+    color: #9ca7b4;
+    font-weight: 200;
+    line-height: 1.7;
+    font-size: 14px;
+    padding-top: 10px;
+    padding-bottom: 30px;
+}
+.san-hover>div:nth-child(1)>div:nth-child(1){
+    background-color: #7840c1;
+}
+.san-hover>div:nth-child(2)>div:nth-child(1){
+    background-color: #17c5cb;
+}
+.san-hover>div:nth-child(3)>div:nth-child(1){
+    background-color: #2da2f8;
+}
+.san-hover>div:nth-child(4)>div:nth-child(1){
+    background-color: #18284d;
+}
