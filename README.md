@@ -13,6 +13,7 @@
 * [漂亮的网站](./ife-course/web-basic/make-website.md)
 * [复杂页面实现](./ife-course/web-basic/complex-page.md)
 * [第十七天到第十八天，“如果”可以“重来”](./other/JavaScript/if-else/index.html)
+* [第十九天：找到那个DOM](./other/JavaScript/find-dom/index.html)
 
 ### 设计学院
 
