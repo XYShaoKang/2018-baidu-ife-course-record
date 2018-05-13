@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>第二十到第二十一天：让你和页面对话</title>
+    <style>
+        body>div {
+            width: 600px;
+            margin: 20px auto;
+
+            box-shadow: 2px 7px 14px 1px #555;
+            padding: 10px;
+        }
+        body>div>h2{
+            border-bottom: 1px solid #777;
+            padding-bottom: 10px;
+        }
+
+        select {
+            display: none;
+        }
+
+        .palette {
+            margin: 0;
+            padding: 0;
+
+            list-style: none;
+        }
+
+        .palette li {
+            width: 40px;
+            height: 40px;
+
+            cursor: pointer;
+
+            border: 1px solid #000;
+        }
+
+        #smile {
+            width: 480px;
+            height: 479px;
+            background: url(./images/erik_ce204002.jpg) no-repeat;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <h2>task1 : 学习了解 JavaScript 事件的知识</h2>
+        <input id="name" type="text">
+        <button id="submit-btn">Submit</button>
+    </div>
+    <div>
+        <h2>task2 : 学习如何用 JavaScript 操作 DOM 样式</h2>
+        <label>
+            <input id="school" name="status" type="radio"> School
+        </label>
+        <label>
+            <input id="company" name="status" type="radio"> Company
+        </label>
+
+        <select id="school-select">
+            <option>北京邮电大学</option>
+            <option>黑龙江大学</option>
+            <option>华中科技大学</option>
+        </select>
+
+        <select id="company-select">
+            <option>百度</option>
+            <option>爱奇艺</option>
+        </select>
+    </div>
+    <div>
+        <h2>task3 : 理解 JavaScript 的事件机制，并了解事件代理</h2>
+        <ul class="palette">
+            <li style="background-color:crimson"></li>
+            <li style="background-color:bisque"></li>
+            <li style="background-color:blueviolet"></li>
+            <li style="background-color:coral"></li>
+            <li style="background-color:chartreuse"></li>
+            <li style="background-color:darkolivegreen"></li>
+            <li style="background-color:cyan"></li>
+            <li style="background-color:#194738"></li>
+        </ul>
+
+        <p class="color-picker"></p>
+    </div>
+
+    <div>
+        <h2>task4 : 定时</h2>
+        <div id="fade-obj" style="width:300px;height:300px;background:#000"></div>
+        <button id="fade-btn">淡出</button>
+    </div>
+    <div>
+        <h2>task5 : Erik笑容的动画</h2>
+        <p>一直放着感觉好傻[捂脸]~~~</p>
+        <div id="smile"></div>
+    </div>
+    <script>
+        // task1
+        // 当点击按钮 submit-btn 时，在console中输出 name 中的内容
+        // 在输入过程中，如果按回车键，则同样执行上一条的需求
+        // 在输入过程中，如果按 ESC 键，则把输入框中的内容清空
+        (function () {
+            var btn = document.getElementById('submit-btn');
+            var input = document.getElementById('name');
+            btn.onclick = function () {
+                console.log(input.value);
+            };
+            input.onkeyup = function (e) {
+                if (e.keyCode == 13) {  // 匹配回车键
+                    console.log(input.value);
+                } else if (e.keyCode == 27) {   // 匹配ESC键
+                    input.value = '';
+                }
+            }
+        })();
+
+        // task2
+        // 当用户选择了 School 的单选框时，显示 School 的下拉选项，隐藏 Company 的下拉选项
+        // 当用户选择了 School 的单选框时，显示 Company 的下拉选项，隐藏 School 的下拉选项
+        (function () {
+            var school = document.getElementById('school');
+            var company = document.getElementById('company');
+            school.onchange = function (e) {
+                document.getElementById('school-select').style.display = 'block';
+                document.getElementById('company-select').style.display = 'none';
+            }
+            company.onchange = function (e) {
+                document.getElementById('school-select').style.display = 'none';
+                document.getElementById('company-select').style.display = 'block';
+            }
+        })();
+
+        // task3 
+        // 使用事件代理
+        (function () {
+            // var list = document.querySelectorAll("li");
+            // for (var i = i = 0, len = list.length; i < len; i++) {
+            //     list[i].onclick = function (e) {
+            //         var t = e.target;
+            //         var c = t.style.backgroundColor;
+            //         var p = document.getElementsByClassName("color-picker")[0];
+            //         p.innerHTML = c;
+            //         p.style.color = c;
+            //     }
+            // }
+            var ul=document.getElementsByClassName('palette')[0];
+            ul.onclick=(e)=>{
+                var t = e.target;
+                var c = t.style.backgroundColor;
+                var p = document.getElementsByClassName("color-picker")[0];
+                p.innerHTML = c;
+                p.style.color = c;
+            };
+        })();
+
+        // task4
+        // 点击按钮时，开始改变 fade-obj 的透明度，开始一个淡出（逐渐消失）动画，直到透明度为0
+        // 在动画过程中，按钮的状态变为不可点击
+        // 在动画结束后，按钮状态恢复，且文字变成“淡入”
+        // 在 按钮显示 淡入 的状态时，点击按钮，开始一个“淡入”（逐渐出现）的动画，和上面类似按钮不可点，直到透明度完全不透明
+        // 淡入动画结束后，按钮文字变为“淡出”
+        // 暂时不要使用 CSS animation （以后我们再学习）
+        (function () {
+            var div = document.getElementById('fade-obj');
+            var btn = document.getElementById('fade-btn');
+            var type = 1;   // 初始动画类型，1为淡出，-1为淡入
+            btn.onclick = (e) => {
+                e.target.disabled = true;
+                var speed = 121;    // 动画速度
+                if (type > 0) {
+                    div.style.opacity = 1;
+                } else {
+                    div.style.opacity = 0;
+                }
+                var timer = setInterval(function () {
+                    div.style.opacity -= type * speed / 1000; console.log(1);
+                    if (div.style.opacity < 0 || div.style.opacity > 1) {
+                        clearInterval(timer);
+                        e.target.disabled = false;
+                        if (type > 0) {
+                            e.target.innerText = '淡入';
+                        } else {
+                            e.target.innerText = '淡出';
+                        }
+                        type *= -1;
+                    }
+                }, 100);
+            }
+        })();
+
+        // task5
+        // 基于一个我们提供的图片，实现 IFE2016中Erik笑容的动画
+        // 图片地址：http://ife.baidu.com/2016/static/img/erik_ce204002.jpg
+        // 注意，依然不要使用 CSS animation，因为我们这里要学习的是使用 JavaScript 来操作 CSS，而不是为了完成这个任务。
+        (function () {  
+            var div=document.getElementById('smile');
+            var posY=-1;
+            var direction=1;
+            setInterval(()=>{
+                posY-=480*direction;
+                if (posY<-7680||posY>-2) {
+                    direction*=-1;
+                }
+                div.style.backgroundPositionY=`${posY}px`;
+            },150);
+        })();
+    </script>
+</body>
+
+</html>
