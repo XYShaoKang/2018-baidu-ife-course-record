@@ -1,0 +1,58 @@
+body {
+    background: #ececea;
+}
+.va {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+.va button {
+    margin-top: 10px;
+}
+
+p {
+    color: blueviolet;
+}
+.menu ul {
+    display: flex;
+    align-items: center;
+
+    border-bottom: 1px solid #595957;
+}
+.menu ul,
+.menu li {
+    padding: 0;
+
+    list-style: none;
+}
+.menu li {
+    box-sizing: border-box;
+    height: 50px;
+    padding: 0 10px 0 10px;
+
+    text-align: center;
+}
+.menu a {
+    display: block;
+
+    text-decoration: none;
+
+    color: #acacac;
+
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 50px;
+}
+.menu .current a {
+    color: #595959;
+}
+.menu .current {
+    border-bottom: 2px solid #000;
+}
+.menu li:hover {
+    border-bottom: 1px solid #000;
+}
+.menu li:hover a {
+    color: #727272;
+}

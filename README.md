@@ -15,6 +15,7 @@
 * [第十七天到第十八天，“如果”可以“重来”](./other/JavaScript/if-else/index.html)
 * [第十九天：找到那个DOM](./other/JavaScript/find-dom/index.html)
 * [第二十到第二十一天：让你和页面对话](./other/JavaScript//page-interaction/index.html)
+* [第二十二天到第二十四天：JavaScript里面的居民们](./ife-course/web-basic/JavaScript/day22.md)
 
 ### 设计学院
 
