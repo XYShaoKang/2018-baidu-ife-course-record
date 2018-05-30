@@ -91,12 +91,17 @@ function getCue(str, wrapper) {
                 createFullEmail(str, emailSuffix, wrapper);
             }
         }
-        // if (selectIndex>wrapper.getElementsByTagName('li').length-1) {
-        //     selectIndex=0;
-        // }
+
         //设置选中第一个
         selectIndex = 0;
-        wrapper.getElementsByTagName('li')[selectIndex].classList.add('select');
+        var lis = wrapper.getElementsByTagName('li');
+        if (lis.length == 0) {
+            for (const emailSuffix of postfixList) {
+                createFullEmail(str, emailSuffix, wrapper);
+            }
+        }
+        lis[selectIndex].classList.add('select');
+
         // 移除隐藏类名，让提示框显示
         emailSugWrapper.classList.remove('hide');
     }
