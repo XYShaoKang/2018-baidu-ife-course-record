@@ -1,0 +1,17 @@
+.wrapper{
+    position: absolute;
+}
+.wrapper ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.wrapper ul li:hover{
+    background: #ff03b3;
+}
+.wrapper .select{
+    background: #04f138;
+}
+.hide{
+    display: none;
+}
