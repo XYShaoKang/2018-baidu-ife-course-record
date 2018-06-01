@@ -46,12 +46,6 @@ var dataPro = (function () {
     }
     //将数据转换成表
     function convertToTabale(data, dims) {
-        // console.log(Enumerable.from(dimensions).orderBy(d=>d.length).toArray());
-
-        // for (const key in dimensions) {
-        //     // console.log(dimensions[key]);
-        //     Enumerable.from(data).select(d => d[key]).distinct().toArray().length
-        // }
         var tableHead = [];
         var keys = [];
         Enumerable.from(dims).orderBy(d => d.value.length != 1).toArray().forEach(d => keys.push(d.key));

@@ -59,7 +59,6 @@ var from = (function () {
     //设置数据
     function setData(datas) {
         cacheDatas = datas;
-        console.log(datas);
         changeDatas = {};
         for (const key in datas) {
             if (datas.hasOwnProperty(key)) {
@@ -75,34 +74,30 @@ var from = (function () {
     }
     //表单事件
     function optionOnChange(e, params) {
-        console.log(e);
-        console.log(params);
-        console.log(e.target.checked);
         changeDatas[e.currentTarget.id] = changeDatas[e.currentTarget.id] || [];
         if (e.target.value == -1) {
             allChange(e);
         } else {
             
             var count=Enumerable.from(changeDatas[e.currentTarget.id]).where(d => d.change).toArray().length;
-            console.log(count);
             if (e.target.checked) {
                 if (count==changeDatas[e.currentTarget.id].length-1) {
-                    console.log(e.currentTarget.children[0].children[0].checked=true);
+                    e.currentTarget.children[0].children[0].checked=true;
                     
                 }
             }
             else{
                 if (count==1) {
-                    console.log(count);
                     e.target.checked=true;
                     return false;
-                    // event.preventDefault();
+                }
+                
+                if (count==changeDatas[e.currentTarget.id].length) {
+                    e.currentTarget.children[0].children[0].checked=false;
                 }
             }
             changeDatas[e.currentTarget.id][e.target.value].change = !changeDatas[e.currentTarget.id][e.target.value].change;
         }
-        // changeDatas[e.currentTarget.id] = changeDatas[e.currentTarget.id] || [];
-        // changeDatas[e.currentTarget.id][e.target.value].change = !changeDatas[e.currentTarget.id][e.target.value].change;
         var temp = {};
         Enumerable.from(changeDatas)
             .where(
@@ -124,8 +119,6 @@ var from = (function () {
 
                 }
             );
-        console.log(temp);
-
         var t = {};
         t[e.target.id] = [];
         t[e.target.id].push(e.target.value);
