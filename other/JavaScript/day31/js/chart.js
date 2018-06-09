@@ -25,7 +25,7 @@
     var svgCache;
     var canvasCache;
     //svg绘制
-    function svgDraw(data) {
+    function svgDraw(datas) {
 
         var width = 500, height = 300;
         var origin = { x: 50, y: height - 50 };
@@ -43,17 +43,24 @@
         var axisY = svgCreateAxis({ from: { x: origin.x, y: height - 10 }, to: { x: origin.x, y: 0 } });
         svg.appendChild(axisX);
         svg.appendChild(axisY);
-        var distanceWidth = Math.floor((width - origin.x) / (data.data.length + 1));
+        var max = Math.max(...datas.map((d) => { return Math.max(...d.data) }));
+        var distanceWidth = Math.floor((width - origin.x) / (datas[0].data.length + 1));
+        var rectWidth = (distanceWidth-5) / datas.length;
 
-        var max = Math.max(...data.data);
-        var heightZoom = (0.8 * origin.y) / max;
-        for (let i = 0; i < data.data.length; i++) {
-            const d = data.data[i];
-            var rectHeight = Math.floor(d * heightZoom);
-            var rect = svgCreateRect({ pos: { x: origin.x + distanceWidth * (i + 1) - 10, y: origin.y - rectHeight }, width: 20, height: rectHeight });
-            svg.appendChild(rect);
+        for (let i = 0; i < datas.length; i++) {
+            const data = datas[i];
+            var heightZoom = (0.8 * origin.y) / max;
+            for (let j = 0; j < data.data.length; j++) {
+                const d = data.data[j];
+                var rectHeight = Math.floor(d * heightZoom);
+                var rect = svgCreateRect({ pos: { x: origin.x + distanceWidth * (j + 1) - 10 + rectWidth * i, y: origin.y - rectHeight }, width: rectWidth, height: rectHeight, color: data.color });
+                svg.appendChild(rect);
+            }
+            chartElement.appendChild(svg);
         }
-        return svg;
+
+
+        // return svg;
     }
     //svg坐标
     function svgCreateAxis({ from = { x: 1, y: 2 }, to = { x: 100, y: 100 }, color = 'red' }) {
@@ -86,23 +93,23 @@
         context.clearRect(0, 0, width, height);
         canvasCreateLine(context, { x: 10, y: origin.y }, { x: width, y: origin.y });
         canvasCreateLine(context, { x: origin.x, y: height - 10 }, { x: origin.x, y: 0 });
-        var max = Math.max(...datas.map((d)=>{return Math.max(...d.data)}));
+        var max = Math.max(...datas.map((d) => { return Math.max(...d.data) }));
         for (const data of datas) {
             var distanceWidth = Math.floor((width - origin.x) / (data.data.length + 1));
 
-            
+
             var heightZoom = (0.8 * origin.y) / max;
             var pos = {};
             for (let i = 0; i < data.data.length; i++) {
                 const d = data.data[i];
                 var rectHeight = Math.floor(d * heightZoom);
                 if (i != 0) {
-                    var rect = canvasCreateLine(context, pos, { x: origin.x + distanceWidth * (i + 1) - 10, y: origin.y - rectHeight },data.color);
+                    var rect = canvasCreateLine(context, pos, { x: origin.x + distanceWidth * (i + 1) - 10, y: origin.y - rectHeight }, data.color);
                 }
 
                 pos.x = origin.x + distanceWidth * (i + 1) - 10;
                 pos.y = origin.y - rectHeight;
-                canvasCreateArc(context, pos,data.color);
+                canvasCreateArc(context, pos, data.color);
             }
         }
 
@@ -115,7 +122,7 @@
         context.strokeStyle = color;
         context.stroke();
     }
-    function canvasCreateArc(context, pos,color='red') {
+    function canvasCreateArc(context, pos, color = 'red') {
         context.beginPath();
         context.arc(pos.x, pos.y, 5, 0, 2 * Math.PI);
         context.fillStyle = color;
@@ -125,12 +132,12 @@
         var tempDatas = [];
         for (let i = 0; i < datas.length; i++) {
             const data = datas[i];
-            tempDatas.push({data:data.slice(2, data.length),color:colors[i]});
+            tempDatas.push({ data: data.slice(2, data.length), color: colors[i] });
         }
         canvasDraw(tempDatas);
 
 
-        chartElement.appendChild(svgDraw(tempDatas[0]));
+        svgDraw(tempDatas);
 
     }
 
