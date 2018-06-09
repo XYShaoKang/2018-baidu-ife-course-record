@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>canvas Demo</title>
+</head>
+
+<body>
+    <h2>画一条线</h2>
+    <canvas id="line"></canvas>
+    <h2>画一个矩形</h2>
+    <canvas id="rectangle"></canvas>
+    <h2>画一个圆形</h2>
+    <canvas id="circular"></canvas>
+    <h2>显示一些文字</h2>
+    <canvas id="text"></canvas>
+    <h2>画一个时钟</h2>
+    <canvas id="clock"></canvas>
+    <h2>画一朵云</h2>
+    <canvas id="cloud"></canvas>
+    <script>
+        var PI=Math.PI;
+        var lineContext = document.getElementById('line').getContext('2d');
+        lineContext.moveTo(0, 50);
+        lineContext.lineTo(100, 50);
+        lineContext.stroke();
+
+        var rectangleContext = document.getElementById('rectangle').getContext('2d');
+        rectangleContext.moveTo(10, 10);
+        rectangleContext.lineTo(10, 50);
+        rectangleContext.lineTo(100, 50);
+        rectangleContext.lineTo(100, 10);
+        rectangleContext.lineTo(10, 10);
+        rectangleContext.stroke();
+
+        var circularContext = document.getElementById('circular').getContext('2d');
+        circularContext.arc(50, 50, 20, 0, 2 * PI);
+        circularContext.stroke();
+
+        var textContext = document.getElementById('text').getContext('2d');
+        textContext.font = "48px serif";
+        textContext.fillText("Hello world", 10, 50);
+
+        var clockContext = document.getElementById('clock').getContext('2d');
+        clockContext.moveTo(10,10);
+        clockContext.lineTo(10,100);
+        clockContext.lineTo(100,100);
+        clockContext.lineTo(100,10);
+        clockContext.lineTo(10,10);
+        clockContext.moveTo(10,50);
+        clockContext.lineTo(100,50);
+        clockContext.font="25px serif";
+        clockContext.fillText("时钟↓",20,40);
+        // clockContext.fillText("01:27",25,80);
+        clockContext.stroke();
+        setInterval(
+            function () {  
+                clockContext.clearRect(11,51,99,49)
+                var now=new Date();
+                var hour=now.getHours();
+                var minute=now.getMinutes();
+                var second=now.getSeconds()
+                clockContext.font="20px serif";
+                clockContext.fillText(`${hour}:${minute}:${second}`,18,80);
+                clockContext.stroke();
+            },
+        1000);
+        
+
+
+        var cloudContext = document.getElementById('cloud').getContext('2d');
+        cloudContext.arc(50, 50, 20, 0.62* PI,1.52 * PI );
+        cloudContext.arc(80, 40, 30, 1.2* PI,1.8 * PI );
+        cloudContext.arc(120, 60, 40,  1.4 * PI,2 * PI );
+        cloudContext.arc(140, 80, 30,  1.8 * PI,0.3 * PI );
+        cloudContext.arc(120, 90, 40,  0.2 * PI,0.75 * PI );
+        cloudContext.arc(80, 80, 40,  0.4 * PI,1.1 * PI );
+        cloudContext.stroke();
+    </script>
+</body>
+
+</html>

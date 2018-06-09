@@ -2,9 +2,9 @@
 // events.on('upDim',function (data) {  
 //     console.log('upDim',data);
 // })
-events.on('upDatas',function (data) {  
-    console.log('upDatas',data);
-})
+// events.on('hoverRow',function (data) {  
+//     console.log('hoverRow',data);
+// })
 // events.on('optionOnChange',function (data) {  
 //     console.log('optionOnChange',data);
 // })

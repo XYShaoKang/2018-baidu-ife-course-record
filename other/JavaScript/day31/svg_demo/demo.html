@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>svg Demo</title>
+</head>
+
+<body>
+    <h2>线条</h2>
+    <div>
+        <svg xmlns="http://www.w3.org/2000/svg">
+            <line x1="0" y1="0" x2="100" y2="100" style="stroke:red;stroke-width:2" />
+        </svg>
+    </div>
+    <h2>矩形</h2>
+    <div>
+        <svg xmlns="http://www.w3.org/2000/svg">
+            <rect width="200" height="100" fill="rebeccapurple" />
+        </svg>
+    </div>
+    <h2>园</h2>
+    <div>
+        <svg xmlns="http://www.w3.org/2000/svg">
+
+            <circle cx="100" cy="50" r="40" fill="hsl(50, 100%, 50%)" />
+
+        </svg>
+    </div>
+    <h2>文字</h2>
+    <div>
+        <svg xmlns="http://www.w3.org/2000/svg">
+
+            <text style="fill:red;font-size:24pt" x="100" y="100">Hello World!</text>
+        </svg>
+    </div>
+    <h2>花</h2>
+    <div>
+        <svg width="300" viewBox="-60 -80 480 460" version="1.1" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <path id="petal" d="M0.5,3.5c5,46,44,92,59,105c48,44,102,31,117,39c19,26,10-17,10-17s-25-55-61-77C79.5,38.5,32.5,40.5,0.5,3.5"
+                />
+            </defs>
+            <g id="flower">
+            </g>
+            <!-- <use id="petal1" xlink:href="#petal" x="0" y="0"/> -->
+            <!-- <use xlink:href="#petal" x="0" y="0"  transform="rotate(10,180 170) "/>
+            <use xlink:href="#petal" x="0" y="0"  transform="rotate(20,180 170) "/>
+            <use xlink:href="#petal" x="0" y="0"  transform="rotate(30,180 170) "/>
+            <use xlink:href="#petal" x="0" y="0"  transform="rotate(40,180 170) "/> -->
+            <!-- <path class="st0" d="M0.5,3.5c5,46,44,92,59,105c48,44,102,31,117,39c19,26,10-17,10-17s-25-55-61-77C79.5,38.5,32.5,40.5,0.5,3.5z"/> -->
+        </svg>
+    </div>
+    <h2>树</h2>
+    <div>
+        <svg width="400"  version="1.1" xmlns="http://www.w3.org/2000/svg">
+            <path d="M100 0,L0 100 200 100 Z" fill="green"></path>
+            <path d="M90 100,L90 200 110 200 110 100 Z" style="fill:gray"></path>
+        </svg>
+    </div>
+    <script>
+        (function () {
+            var SVG_NS = 'http://www.w3.org/2000/svg';
+            var XLINK_NS = 'http://www.w3.org/1999/xlink';
+            renderFlower();
+            function renderFlower() {
+                var petalRef = document.getElementById("petal");
+                var petalRef1 = document.getElementById("petal1");
+                console.log(petalRef1);
+
+                var flower = document.getElementById("flower");
+                var petalCount = 10;
+
+                var petal;
+                var angle = 0;
+                var addAngle = 360 / petalCount;
+                while (petalCount--) {
+                    petal = use(petalRef);
+                    petal.setAttribute('transform', `rotate(${angle},180 150)`);
+                    angle += addAngle;
+                    flower.appendChild(petal);
+                    console.log(petal);
+                }
+            }
+            function use(origin) {
+                var _use = document.createElementNS(SVG_NS, 'use');
+                petal.setAttribute('stroke', `red`);
+                petal.setAttribute('stroke-width', `2`);
+                _use.setAttributeNS(XLINK_NS, 'xlink:href', '#' + origin.id);
+                return _use;
+            }
+        })();
+
+    </script>
+
+</body>
+
+</html>

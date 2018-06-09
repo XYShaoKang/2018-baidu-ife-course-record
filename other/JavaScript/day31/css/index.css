@@ -16,3 +16,8 @@ td{
     list-style: none;
     padding: 0;
 }
+
+.chart{
+    display: flex;
+    height: 300px;
+}

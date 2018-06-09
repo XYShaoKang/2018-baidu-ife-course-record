@@ -3,6 +3,7 @@ var table = (function () {
     //表头,将来从外部传入
     var cacheDatas;//缓存数据
     var tableHead;
+    var cacheIndex;
     var tableDiv = document.getElementById('table');//表格外部div
     var tableElement = document.createElement('table');//表格元素
     tableDiv.appendChild(tableElement);
@@ -19,24 +20,27 @@ var table = (function () {
         tableElement.appendChild(head);
         tableElement.children
         var tempTd;
-        for (const data of cacheDatas) {
-
+        for (let i = 0; i < cacheDatas.length; i++) {
+            const data = cacheDatas[i];
             var row = document.createElement('tr');
             var span = false;
 
-            for (let i = 0; i < data.length; i++) {
-                const text = data[i];
+            for (let j = 0; j < data.length; j++) {
+                const text = data[j];
 
                 var td = document.createElement('td');
                 td.innerText = text;
 
                 //判断合并
-                if (i == 0) {
+                if (j == 0) {
                     if (tempTd && tempTd.innerText == td.innerText) {
                         tempTd.rowSpan += 1;
                         continue;
                     }
                     tempTd = td;
+                }
+                if (j > 1) {
+                    td.setAttribute('index', i);
                 }
 
 
@@ -44,12 +48,34 @@ var table = (function () {
             }
             tableElement.appendChild(row);
         }
+
+
     }
+    tableDiv.onmouseover = function (e) {
+        var index = e.target.getAttribute('index');
+        if (index != null) {
+            if (index != cacheIndex) {
+                cacheIndex = index;
+                events.emit('hoverRow', [cacheDatas[index]]);
+            }
+
+        } else {
+            // if (cacheIndex != -1) {
+            //     cacheIndex = -1;
+            //     events.emit('hoverRow', cacheDatas);
+
+            // }
+            events.emit('hoverRow', cacheDatas);
+
+        }
+
+    };
     //设置数据
     function setData(tableDatas) {
         tableElement.innerHTML = '';
         cacheDatas = tableDatas.tableData;
         tableHead = tableDatas.tableHead;
+        events.emit('hoverRow', cacheDatas);
         render();
     }
     //监听表格数据变化
