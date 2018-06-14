@@ -1,6 +1,6 @@
 //数据处理
 
-var dataPro = (function () {
+var dataPro = (function ($) {
     var cacheDatas = [];//数据缓存
     var dimensions = {};//维度
     var tableHead_cn = [
@@ -31,8 +31,36 @@ var dataPro = (function () {
         'Nov',
         'Dec'
     ];
-    function getDatas() {
-
+    //获取数据
+    function getDatas(fn) {
+        var url='./js/data.js';
+        var storage = window.localStorage;
+        if (storage && storage.data) {
+            fn(JSON.parse(storage.data));
+            // console.log(JSON.parse(storage.data));
+            
+        } else {
+            $.ajax({
+                url: url,
+                success: function (result) {
+                    // console.log(sourceData);
+                    storage.data = JSON.stringify(sourceData);
+                    fn(sourceData);
+                }
+            })
+        }
+    }
+    //保存数据
+    function saveDatas(datas) {
+        var storage = window.localStorage;
+        if (storage) {
+            var tempDatas = [];
+            $.each(datas, (i, d) => {
+                tempDatas.push({product:d[0],region:d[1],sale:d.slice(2,d.length)})
+            })
+            storage.data = JSON.stringify(tempDatas);
+            
+        }
     }
     //提取维度数据
     function convertToDim(dim) {
@@ -131,7 +159,11 @@ var dataPro = (function () {
     }
     // 监听表单变化
     events.on('optionOnChange', optionOnChange)
+    events.on('save', saveDatas);
+    getDatas(function (data) {
+        setData(data, ['product', 'region']);
+    });
     return {
         setData: setData
     };
-})()
+})(jQuery)

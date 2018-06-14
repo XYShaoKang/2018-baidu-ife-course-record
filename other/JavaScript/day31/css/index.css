@@ -1,23 +1,82 @@
-table{
+table {
     text-align: center;
+
     border-collapse: collapse;
 }
 table,
 tr,
 th,
-td{
-    border: 1px solid #000;
+td {
     padding: 5px;
+
+    border: 1px solid #000;
 }
-.select from{
+.select from {
     display: flex;
 }
 .select ul {
-    list-style: none;
     padding: 0;
+
+    list-style: none;
 }
 
-.chart{
+.chart {
     display: flex;
+
     height: 300px;
+}
+table td {
+    box-sizing: border-box;
+    padding: 0;
+}
+table .edit {
+    /* text-align: left; */
+}
+table .edit > input {
+    box-sizing: border-box;
+
+    border: 1px solid #02ad0b;
+}
+table .edit span {
+    position: absolute;
+
+    width: 20px;
+    height: 20px;
+    margin-top: 25px;
+
+    color: #fff;
+    background: rgba(0, 0, 0, .9);
+}
+table .edit .check {
+    margin-left: -60px;
+}
+table .edit .close {
+    margin-left: -40px;
+}
+
+/* 隐藏number input 的上下箭头 */
+table input::-webkit-outer-spin-button,
+table input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+table input[type="number"] {
+    -moz-appearance: textfield;
+}
+.edit-icon::after {
+    position: absolute;
+
+    width: 19px;
+    height: 19px;
+
+/* margin-top: 3px; */
+
+    content: "";
+    content: "\f044";
+
+    color: #919191;
+    background-repeat: no-repeat;
+    background-size: contain;
+
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
 }

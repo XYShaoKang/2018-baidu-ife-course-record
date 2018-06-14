@@ -8,7 +8,9 @@
 // events.on('optionOnChange',function (data) {  
 //     console.log('optionOnChange',data);
 // })
-dataPro.setData(sourceData,['product','region']);
+
+// dataPro.setData(sourceData,['product','region']);
+
 // var datas = dataPro.getClass(['product','region']);
 
 // from.setData(dataPro.dim);
@@ -17,3 +19,5 @@ dataPro.setData(sourceData,['product','region']);
 
 
 // table.setData(tableHear, dataPro.getDataByPos([0,1]));
+
+
