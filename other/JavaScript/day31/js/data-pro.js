@@ -70,7 +70,7 @@ var dataPro = (function ($) {
                 .select(data => data.first()[d])
                 .toArray();
         }
-        upDim(dimensions);
+        setDim(dimensions);
     }
     //将数据转换成表
     function convertToTabale(data, dims) {
@@ -107,7 +107,7 @@ var dataPro = (function ($) {
         upDatas(convertToTabale(cacheDatas, dimensions));
     }
     //表单事件
-    function optionOnChange(e) {
+    function changeDim(e) {
 
 
         var dims = {};
@@ -150,15 +150,15 @@ var dataPro = (function ($) {
         upDatas(convertToTabale(tempData, dims));
     }
     // 发射维度数据改变
-    function upDim(data) {
-        events.emit('upDim', data);
+    function setDim(data) {
+        events.emit('setDim', data);
     }
     // 发射表格数据选择改变
     function upDatas(data) {
         events.emit('upDatas', data);
     }
     // 监听表单变化
-    events.on('optionOnChange', optionOnChange)
+    events.on('changeDim', changeDim)
     events.on('save', saveDatas);
     getDatas(function (data) {
         setData(data, ['product', 'region']);

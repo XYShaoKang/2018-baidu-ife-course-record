@@ -1,142 +1,124 @@
 //表单
-var from = (function () {
-    var fromDiv = document.getElementById('from');
-    var fromElement = document.createElement('from');
-    fromDiv.appendChild(fromElement);
-    var cacheDatas;
+var from = (function ($) {
+    var $fromDiv = $('#from');
+    var $fromElement = $('<from>');
+    $fromDiv.append($fromElement);
+    var cacheDatas;//数据缓存
     var changeDatas;
     //表单元素创建
     function create(id, data) {
-
-        var ul = document.createElement('ul');
-        ul.id = id;
-
-        for (let index = 0; index < data.length; index++) {
-            var li = document.createElement('li');
-            var checkbox = document.createElement('input');
-            var label = document.createElement('label');
-            checkbox.type = 'checkbox'
-            if (ul.children.length == 0) {
-                checkbox.name = `${id}_all`;
-                checkbox.id = `${id}_all`;
-                checkbox.value = -1;
-                label.innerText = '全选';
-                label.setAttribute('for', `${id}_all`);
-                li.appendChild(checkbox);
-                li.appendChild(label);
-                ul.appendChild(li);
-
-                li = document.createElement('li');
-                checkbox = document.createElement('input');
-                checkbox.type = 'checkbox'
-                label = document.createElement('label');
+        var $ul = $('<ul>');
+        $ul.attr('id', id);
+        $.each(data, (i, v) => {
+            if ($ul.children().length == 0) {
+                $ul.append(createLi(`${id}_all`, -1, '全选'));
             }
-            checkbox.value = index;
-            checkbox.id = `${id}_${index}`;
-            checkbox.name = `${id}_${index}`;
+            $ul.append(createLi(`${id}_${i}`, i, data[i]));
+        })
+        $ul.on('click', 'input', (e) => {
+            optionOnChange(e.target);
+            var temp = {};
+            Enumerable.from(changeDatas)
+                .where(
+                    data => Enumerable.from(data.value)
+                        .where(d => d.change == true)
+                        .toArray().length > 0
+                )
+                .toArray()
+                .forEach(
+                    (d) => {
+                        d.value.forEach(
+                            (item) => {
+                                temp[d.key] = temp[d.key] || [];
+                                if (item.change) {
+                                    temp[d.key].push(item.value);
+                                }
+                            }
+                        );
+                    }
+                );
+            console.log(temp);
 
-            label.innerText = data[index];
-            label.setAttribute('for', `${id}_${index}`);
-            li.appendChild(checkbox);
-            li.appendChild(label);
-            ul.appendChild(li);
-        }
-        ul.onchange = optionOnChange;
-        fromElement.appendChild(ul);
+            events.emit('optionOnChange', temp);
+        });
+        $fromElement.append($ul);
+    }
+    function createLi(id, value, labelText) {
+        var li = $('<li>');
+        var checkbox = $('<input>').attr('type', 'checkbox');
+        var label = $('<label>');
+        checkbox.attr({
+            'name': id,
+            id: id,
+            value: value
+        })
+        label.text(labelText).attr('for', id);
+        li.append(checkbox).append(label);
+        return li;
     }
     //刷新表单
     function render() {
-        fromElement.innerHTML = '';
-
-
-        for (const key in cacheDatas) {
-            if (cacheDatas.hasOwnProperty(key)) {
-                const element = cacheDatas[key];
-                create(key, element);
-            }
-        }
+        $fromElement.html('');
+        $.each(cacheDatas, (k, v) => {
+            create(k, v);
+        })
     }
     //设置数据
     function setData(datas) {
         cacheDatas = datas;
         changeDatas = {};
-        for (const key in datas) {
-            if (datas.hasOwnProperty(key)) {
-                const element = datas[key];
-                for (let i = 0; i < element.length; i++) {
-                    changeDatas[key] = changeDatas[key] || [];
-                    changeDatas[key].push({ change: false, value: i });
-                }
-            }
-        }
-
+        $.each(datas, (k, data) => {
+            $.each(data, (i, d) => {
+                changeDatas[k] = changeDatas[k] || [];
+                changeDatas[k].push({ change: false, value: i });
+            })
+        })
         render();
     }
-    //表单事件
-    function optionOnChange(e, params) {
-        changeDatas[e.currentTarget.id] = changeDatas[e.currentTarget.id] || [];
-        if (e.target.value == -1) {
-            allChange(e);
-        } else {
-            
-            var count=Enumerable.from(changeDatas[e.currentTarget.id]).where(d => d.change).toArray().length;
-            if (e.target.checked) {
-                if (count==changeDatas[e.currentTarget.id].length-1) {
-                    e.currentTarget.children[0].children[0].checked=true;
-                    
-                }
-            }
-            else{
-                if (count==1) {
-                    e.target.checked=true;
-                    return false;
-                }
-                
-                if (count==changeDatas[e.currentTarget.id].length) {
-                    e.currentTarget.children[0].children[0].checked=false;
-                }
-            }
-            changeDatas[e.currentTarget.id][e.target.value].change = !changeDatas[e.currentTarget.id][e.target.value].change;
-        }
-        var temp = {};
-        Enumerable.from(changeDatas)
-            .where(
-                data => Enumerable.from(data.value)
-                    .where(d => d.change == true)
-                    .toArray().length > 0
-            )
-            .toArray()
-            .forEach(
-                (d) => {
-                    d.value.forEach(
-                        (item) => {
-                            temp[d.key] = temp[d.key] || [];
-                            if (item.change) {
-                                temp[d.key].push(item.value);
-                            }
-                        }
-                    );
+    //单选框改变事件
+    function optionOnChange(target, change) {
 
-                }
-            );
-        var t = {};
-        t[e.target.id] = [];
-        t[e.target.id].push(e.target.value);
-        events.emit('optionOnChange', temp);
+
+        var that = $(target);
+        change = change != undefined ? change : that.prop('checked');
+        var key = that.attr('id').split('_')[0];
+        var index = that.attr('id').split('_')[1];
+        var $ul = that.parents().eq(1);
+        if (that.val() == -1) {//全选
+            // console.log(target,change,that.prop('checked'));
+            $ul.find('input').prop('checked', change);
+
+            $.each(changeDatas[key], (i, v) => {
+                v.change = change;
+            });
+        } else {
+            that.prop('checked', change);
+            changeDatas[key][index].change = change
+        }
+        if ($ul.find('input[value!=-1]:checked').length == $ul.find('input[value!=-1]').length) {//判断是否全部被选中
+            $ul.find('input').prop('checked', true);
+        } else {
+            $ul.find('input').eq(0).prop('checked', false);
+        }
     }
-    //全选事件
-    function allChange(event) {
-        for (const item of event.currentTarget.children) {
-            for (const iterator of item.children) {
-                iterator.checked = event.target.checked;
+    //更新数据
+    function upData(datas) {
+        console.log(datas);
+        $.each(changeDatas, (k, data) => {
+            // $('#' + k + '_all').trigger('change');
+            optionOnChange($('#' + k + '_all'), true)
+            if (datas.hasOwnProperty(k)) {
+                $.each(data, (i, d) => {
+                    if (!(datas[k].indexOf(d.value) != -1)) {
+                        optionOnChange($('#' + k + '_' + d.value), false);
+                    }
+                })
             }
-        }
-        for (const item of changeDatas[event.currentTarget.id]) {
-            item.change = event.target.checked;
-        }
+        })
     }
     // 监听维度数据变化
-    events.on('upDim', setData);
-})();
+    events.on('setDim', setData);
+    events.on('upDim', upData);
+})(jQuery);
 
 

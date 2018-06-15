@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="div1">
+        <button id="a">A</button>
+        <button id="b">B</button>
+        <button id="c">C</button>
+
+        <button id="d">D</button>
+        <button id="e">E</button>
+        <button id="f">F</button>
+
+
+        <div id="contABC"></div>
+        <div id="contDEF"></div>
+    </div>
+    <script src="../js/jquery-3.3.1.js"></script>
+    <script>
+        var $cont = [$('#contABC'), $('#contDEF')];
+        hashchange();
+        $('#div1').on('click', (e) => {
+            if (e.target.localName == 'button') {
+                var that = $(e.target);
+                // setText(that.text());
+                // location.hash = '#' + that.attr('id');
+                setHash(that.attr('id'));
+            }
+        })
+        $(window).on('hashchange', (e) => {
+            hashchange();
+        })
+        function hashchange() {
+            var hashs = getHash();
+            if (hashs.length > 0) {
+                $.each(hashs, (i, hash) => {
+                    setText(hash);
+                })
+            } else {
+                setText('');
+            }
+        }
+        function getHash() {
+            var hashStr = location.hash;
+            if (hashStr) {
+                var hashs = hashStr.slice(1).split('_');
+                return hashs;
+            } else {
+                return [];
+            }
+        }
+        function setHash(hash) {
+            var hashs = getHash();
+            if ('abc'.indexOf(hash.toLocaleLowerCase()) != -1) {
+                var arr=[];
+                $.each(hashs, (i, v) => {
+                    if ('abc'.indexOf(v.toLocaleLowerCase()) == -1) {
+                        arr.push(v);
+                    }
+                })
+                hashs=arr;
+                hashs.push(hash);
+            } else if ('def'.indexOf(hash.toLocaleLowerCase()) != -1) {
+                var arr=[];
+                $.each(hashs, (i, v) => {
+                    if ('def'.indexOf(v.toLocaleLowerCase()) == -1) {
+                        arr.push(v);
+                    }
+                })
+                hashs=arr;
+                hashs.push(hash);
+            }
+            location.hash = '#' + hashs.join('_');
+        }
+        function setText(hash) {
+            if (!hash) {
+                $cont[0].text('');
+                $cont[1].text('');
+            } else if ('abc'.indexOf(hash.toLocaleLowerCase()) != -1) {
+                $cont[0].text($('#' + hash).text());
+            } else if ('def'.indexOf(hash.toLocaleLowerCase()) != -1) {
+                $cont[1].text($('#' + hash).text());
+            }
+        }
+
+
+    </script>
+</body>
+
+</html>

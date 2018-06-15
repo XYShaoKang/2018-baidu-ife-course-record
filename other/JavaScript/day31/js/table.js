@@ -6,6 +6,7 @@ var table = (function () {
     var cacheIndex;
     var $tableDiv = $('#table');//表格外部div
     var $tableElement = $('<table>');//表格元素
+    var $button;
     $tableDiv.append($tableElement);
     //刷新表格
     function render() {
@@ -94,9 +95,9 @@ var table = (function () {
     //单元格按键监听事件
     $tableElement.on('keyup', 'input', (e) => {
         var that = $(e.currentTarget);
-        if (e.keyCode == 13) {
+        if (e.keyCode == 13) {//回车键
             that.next().click();
-        } else if (e.keyCode == 27) {
+        } else if (e.keyCode == 27) {//ESC
             that.next().next().click();
         }
     })
@@ -110,7 +111,7 @@ var table = (function () {
         e.stopPropagation();
         var that = $(e.target);
 
-        if (that.hasClass('check')) {
+        if (that.hasClass('check')) {//确认
             // check(that.parent().attr('r_index'),that.parent().attr('c_index'),that.prev().val())
             var value = that.prev().val();
             if (isNum(value)) {
@@ -119,13 +120,14 @@ var table = (function () {
             } else {
                 alert('内容包含非数字，请修改！');
             }
-        } else if (that.hasClass('close')) {
+        } else if (that.hasClass('close')) {//取消
             var value = cacheDatas[that.parent().attr('r_index')][that.parent().attr('c_index')];
             that.parent().empty().removeClass('edit').text(value);
         }
 
 
     })
+    //判断是否为数字
     function isNum(value) {
         return /^[\d]+$/.test(value);
     }
@@ -136,11 +138,13 @@ var table = (function () {
         tableHead = tableDatas.tableHead;
         events.emit('hoverRow', cacheDatas);
         render();
-        var $button = $('<button>').text('保存').attr('id', 'save');
-        $button.on('click', () => {
-            events.emit('save', cacheDatas);
-        });
-        $tableDiv.append($button);
+        if (!$button) {
+            $button = $('<button>').text('保存').attr('id', 'save');
+            $button.on('click', () => {
+                events.emit('save', cacheDatas);
+            });
+            $tableDiv.append($button);
+        }
     }
     //监听表格数据变化
     events.on('upDatas', setData);
