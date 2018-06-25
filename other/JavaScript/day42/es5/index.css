@@ -1,0 +1,98 @@
+ul,
+li{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.wrap {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    text-align: center;
+}
+.wrap h1 {
+    width: 200px;
+
+    border: 1px solid #000;
+}
+.wrap .customer-list{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    height: 500px;
+    border: 1px solid #000;
+}
+.wrap .customer-list>ul{
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+}
+.wrap > div {
+    position: relative;
+
+    width: 800px;
+    height: 600px;
+
+    border: 1px solid #000;
+}
+.wrap .waiter {
+    position: absolute;
+}
+.wrap .customer {
+    position: absolute;
+}
+.wrap .cook {
+    position: absolute;
+
+}
+.wrap .cook>.ndd{
+    position: absolute;
+    
+    padding: 0;
+    width: 100px;
+    margin-top: 10px;
+    margin-left: -25px;
+    border: 1px solid #000;
+    display: none;
+}
+
+.wrap .seta {
+    position: absolute;
+
+    width: 100px;
+    height: 100px;
+
+    border: 1px solid #000;
+    background-color: #fff;
+}
+.wrap .prompt {
+    position: absolute;
+    left: -25px;
+
+    /* display: none; */
+
+    margin: 0;
+    padding: 0;
+    padding-bottom: 5px;
+
+    border: 1px solid #000;
+    border-radius: 5px;
+}
+.wrap .prompt::before {
+    position: absolute;
+    bottom: 0;
+    left: 45px;
+
+    width: 10px;
+    height: 10px;
+    margin-bottom: -7px;
+
+    content: "";
+    transform: rotate(45deg);
+
+    border-right: 1px solid #000;
+    border-bottom: 1px solid #000;
+    border-radius: 5px;
+    background-color: #fff;
+}
