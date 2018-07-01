@@ -7,7 +7,7 @@ function Food(name, cost, price, time) {
     this.cost = cost
     // 售价
     this.price = price
-    // 烹饪事件
+    // 烹饪时间
     this.cookingTime = time
 }
 Food.prototype.addId = (function addId() {

@@ -22,15 +22,14 @@ Prompt.prototype.show = function (str, time) {
         }
     })
 }
-Prompt.prototype.text = function (str, time) {
+Prompt.prototype.text = function (str) {
     var that = this.entity
-    time=time||0
-    setTimeout(() => {
-        that.text(str)
-        that.css({
-            top: that.outerHeight(true) * -1 - 10
-        })
-    }, time);
+    that.text(str)
+    that.css({
+        bottom: 30,
+        left: 0
+    })
+
 }
 Prompt.prototype.hide = function () {
     var that = this.entity

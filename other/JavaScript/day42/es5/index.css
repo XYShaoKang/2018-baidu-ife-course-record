@@ -32,7 +32,7 @@ li{
     position: relative;
 
     width: 800px;
-    height: 600px;
+    height: 650px;
 
     border: 1px solid #000;
 }
@@ -50,13 +50,18 @@ li{
     position: absolute;
     
     padding: 0;
-    width: 100px;
+    width: 200px;
+    height: 100px;
     margin-top: 10px;
     margin-left: -25px;
     border: 1px solid #000;
-    display: none;
+    display: flex;
+    font-size: 12px;   
 }
-
+.wrap .cook>.ndd ul{
+    border-right: 1px solid #000;
+    padding:0 2px 0;
+}
 .wrap .seta {
     position: absolute;
 
@@ -96,3 +101,12 @@ li{
     border-radius: 5px;
     background-color: #fff;
 }
+/* #test{
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    left: 250px;
+    top: 150px;
+    
+    border: 1px solid #000;
+} */
